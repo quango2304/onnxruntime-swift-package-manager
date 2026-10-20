@@ -92,12 +92,13 @@ if let pod_archive_path = ProcessInfo.processInfo.environment["ORT_POD_LOCAL_PAT
     package.targets.append(Target.binaryTarget(name: "onnxruntime", path: pod_archive_path))
 
 } else {
-    // ORT release
+    // ORT 1.30.0 built with the fp16 CPU kernels on (quango2304/onnxruntime, branch apple-fp16):
+    // iOS device and Apple-silicon simulator, arm64 only.
     package.targets.append(
        Target.binaryTarget(name: "onnxruntime",
-                           url: "https://download.onnxruntime.ai/pod-archive-onnxruntime-c-1.24.2.zip",
+                           url: "https://github.com/quango2304/onnxruntime/releases/download/v1.30.0-apple-fp16/pod-archive-onnxruntime-c-1.30.0-apple-fp16.zip",
                            // SHA256 checksum
-                           checksum: "f7100a992d2a8135168c8afd831e6a58b465349101982aa58b3e11d36e600b54")
+                           checksum: "7aa20c38ce3bca63ed2a393f9364c476e862908152dcdec9a39d47cfc919ae7d")
     )
 }
 
